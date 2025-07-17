@@ -21,6 +21,7 @@ from django.urls import path, include
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework.permissions import AllowAny
+from core.views import homepage  # replace with actual app
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -34,6 +35,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", homepage),  # 👈 this line
     path("api/auth/", include("users.urls")),
     path("api/", include("products.urls")),
     path("api/", include("cart.urls")),
@@ -45,6 +47,7 @@ urlpatterns = [
         schema_view.with_ui("swagger", cache_timeout=0),
         name="schema-swagger-ui",
     ),
+    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
     path(
         "swagger.json", schema_view.without_ui(cache_timeout=0), name="schema-json"
     ),  # 👈 add this
