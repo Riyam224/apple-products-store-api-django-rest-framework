@@ -1,6 +1,6 @@
-
 # Create your views here.
 from django.shortcuts import render
+
 
 def homepage(request):
     apps = [
@@ -12,4 +12,4 @@ def homepage(request):
         {"name": "Users", "url": "/api/users/"},
         {"name": "Core", "url": "/api/core/"},
     ]
-    return render(request, 'index.html', {"apps": apps})
+    return render(request, "index.html", {"apps": apps})

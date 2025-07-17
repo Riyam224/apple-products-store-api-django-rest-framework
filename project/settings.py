@@ -22,18 +22,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv(
     "DJANGO_SECRET_KEY", "+s(!=zzzew7541%g90d(zmk3m1g!_=%%5kcv2yn-44%m$)c(bf"
 )  # safer in production
-DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
+
+DEBUG = True
+# DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 ALLOWED_HOSTS = ["*"]  # Add Railway domain for production
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-$x2sid!qd*^ca6&ah28z4xxe5ar6%!xkfco^7sfq*pf_=k12d-"
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ["*"]  # Or your Railway-generated domain later
 
 
 # Application definition
@@ -45,7 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles",
+    "django.contrib.staticfiles",  # ✅ THIS IS REQUIRED
     # todo
     "rest_framework",
     "rest_framework_simplejwt",
@@ -63,6 +62,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    # todo
+    # "django.contrib.staticfiles.middleware.StaticFilesMiddleware",
     # todo
     "whitenoise.middleware.WhiteNoiseMiddleware",
     # todo
@@ -181,7 +182,9 @@ USE_TZ = True
 # todo
 # ✅ Static & Media Files for Railway + Whitenoise
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"  # for collectstatic
+STATICFILES_DIRS = [BASE_DIR / "static"]  # optional, for dev
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = "/media/"
@@ -199,3 +202,26 @@ AUTH_USER_MODEL = "users.CustomUser"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+        "file": {
+            "level": "ERROR",
+            "class": "logging.FileHandler",
+            "filename": "django_errors.log",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console", "file"],
+            "level": "ERROR",
+            "propagate": True,
+        },
+    },
+}
