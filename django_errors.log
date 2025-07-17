@@ -231,3 +231,88 @@ Traceback (most recent call last):
     )
 ValueError: Missing staticfiles manifest entry for 'vendor/bootswatch/default/bootstrap.min.css'
 "GET /admin/ HTTP/1.1" 500 145
+Internal Server Error: /admin/products/product/5/delete/
+Traceback (most recent call last):
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: favorites_favorite.created_at
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/contrib/admin/options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/contrib/admin/options.py", line 2106, in delete_view
+    return self._delete_view(request, object_id, extra_context)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/contrib/admin/options.py", line 2133, in _delete_view
+    ) = self.get_deleted_objects([obj], request)
+        ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/contrib/admin/options.py", line 2101, in get_deleted_objects
+    return get_deleted_objects(objs, request, self.admin_site)
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/contrib/admin/utils.py", line 121, in get_deleted_objects
+    collector.collect(objs)
+    ~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/contrib/admin/utils.py", line 187, in collect
+    return super().collect(objs, source_attr=source_attr, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/db/models/deletion.py", line 348, in collect
+    if getattr(on_delete, "lazy_sub_objs", False) or sub_objs:
+                                                     ^^^^^^^^
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/db/models/query.py", line 412, in __bool__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/r/StudioProjects/django/apple_api/venv/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: favorites_favorite.created_at
+"GET /admin/products/product/5/delete/ HTTP/1.1" 500 184824
